@@ -28,31 +28,31 @@ def runEpisode(stepLimit):
 	totalSteps=RLGlue.RL_num_steps()
 	totalReward=RLGlue.RL_return()
 	
-	print "Episode "+str(whichEpisode)+"\t "+str(totalSteps)+ " steps \t" + str(totalReward) + " total reward\t " + str(terminal) + " natural end"
+	print("Episode "+str(whichEpisode)+"\t "+str(totalSteps)+ " steps \t" + str(totalReward) + " total reward\t " + str(terminal) + " natural end")
 	
 	whichEpisode=whichEpisode+1
 
 #Main Program starts here
 
-print "\n\nExperiment starting up!"
+print("\n\nExperiment starting up!")
 taskSpec = RLGlue.RL_init()
-print "RL_init called, the environment sent task spec: " + taskSpec
+print("RL_init called, the environment sent task spec: " + taskSpec)
 
-print "\n\n----------Sending some sample messages----------"
+print("\n\n----------Sending some sample messages----------")
 
 #Talk to the agent and environment a bit...*/
 responseMessage = RLGlue.RL_agent_message("what is your name?")
-print "Agent responded to \"what is your name?\" with: " + responseMessage
+print("Agent responded to \"what is your name?\" with: " + responseMessage)
 
 responseMessage = RLGlue.RL_agent_message("If at first you don't succeed; call it version 1.0")
-print "Agent responded to \"If at first you don't succeed; call it version 1.0  \" with: " + responseMessage + "\n"
+print("Agent responded to \"If at first you don't succeed; call it version 1.0  \" with: " + responseMessage + "\n")
 
 responseMessage = RLGlue.RL_env_message("what is your name?")
-print "Environment responded to \"what is your name?\" with: " + responseMessage
+print("Environment responded to \"what is your name?\" with: " + responseMessage)
 responseMessage = RLGlue.RL_env_message("If at first you don't succeed; call it version 1.0")
-print "Environment responded to \"If at first you don't succeed; call it version 1.0  \" with: " + responseMessage
+print("Environment responded to \"If at first you don't succeed; call it version 1.0  \" with: " + responseMessage)
 
-print "\n\n----------Running a few episodes----------"
+print("\n\n----------Running a few episodes----------")
 runEpisode(100)
 runEpisode(100)
 runEpisode(100)
@@ -63,7 +63,7 @@ runEpisode(1)
 runEpisode(0)
 RLGlue.RL_cleanup()
 
-print "\n\n----------Stepping through an episode----------"
+print("\n\n----------Stepping through an episode----------")
 #We could also start over and do another experiment */
 taskSpec = RLGlue.RL_init()
 
@@ -73,7 +73,7 @@ startResponse = RLGlue.RL_start()
 
 firstObservation = startResponse.o.intArray[0]
 firstAction = startResponse.a.intArray[0]
-print "First observation and action were: " + str(firstObservation) + " and: " + str(firstAction)
+print("First observation and action were: " + str(firstObservation) + " and: " + str(firstAction))
 
 #Run one step */
 stepResponse = RLGlue.RL_step()
@@ -85,11 +85,11 @@ while (stepResponse.terminal != 1):
         #Could optionally print state,action pairs */
         #printf("(%d,%d) ",stepResponse.o.intArray[0],stepResponse.a.intArray[0])*/
 
-print "\n\n----------Summary----------"
+print("\n\n----------Summary----------")
 
 totalSteps = RLGlue.RL_num_steps()
 totalReward = RLGlue.RL_return()
-print "It ran for " + str(totalSteps) + " steps, total reward was: " + str(totalReward)
+print("It ran for " + str(totalSteps) + " steps, total reward was: " + str(totalReward))
 RLGlue.RL_cleanup()
 
 

@@ -62,7 +62,7 @@ class TaskSpecParser:
 	def __init__(self,ts):
 		self.ts = ts
 		if self.expected_version != self.getVersion():
-			print "Warning: TaskSpec Version is not "+self.expected_version+" but "+self.getVersion()
+			print("Warning: TaskSpec Version is not "+self.expected_version+" but "+self.getVersion())
 			self.valid = False
 		while self.ts.find("  ")!=-1:
 			self.ts = self.ts.replace("  "," ")
@@ -73,7 +73,7 @@ class TaskSpecParser:
 
 	def Validate(self):
 		if not self.valid:
-			print "Warning: TaskSpec String is invalid: "+self.last_error
+			print("Warning: TaskSpec String is invalid: "+self.last_error)
 			return False
 		return True
 
@@ -83,7 +83,7 @@ class TaskSpecParser:
 		except: #ValueError:
 			#raise AttributeError("Malformed TaskSpec String: could not find the "+w[i]+" keyword")
 			self.last_error = "could not find the "+w[i]+" keyword"
-			print "Warning: Malformed TaskSpec String: " +self.last_error
+			print("Warning: Malformed TaskSpec String: " +self.last_error)
 			self.valid = False
 			return ""
 		b=None
@@ -93,7 +93,7 @@ class TaskSpecParser:
 			except: #ValueError:
 				#raise AttributeError("Malformed TaskSpec String: could not find the "+w[i+1]+" keyword")
 				self.last_error = "could not find the "+w[i+1]+" keyword"
-				print "Warning: Malformed TaskSpec String: " +self.last_error
+				print("Warning: Malformed TaskSpec String: " +self.last_error)
 				self.valid = False
 				return ""
 
@@ -172,8 +172,8 @@ class TaskSpecParser:
 
 		except:
 			self.last_error = "error ocurred while parsing a Range in "+str_input
-			print "Warning: Malformed TaskSpec String: " +self.last_error
-			print sys.exc_info()
+			print("Warning: Malformed TaskSpec String: " +self.last_error)
+			print(sys.exc_info())
 			self.valid = False
 			return ""
 
@@ -250,38 +250,38 @@ def test():
 		 ACTIONS INTS (5 0 4) DOUBLES (-.5 2) (2 7.8 9) (NEGINF UNSPEC) REWARDS (-5.0 5.0) EXTRA some other stuff goes here"""
 
 
-	print ts
-	print
-	print
+	print(ts)
+	print()
+	print()
 
 	TaskSpec = TaskSpecParser(ts)
 	if TaskSpec.valid:
-		print "======================================================================================================="
-		print "Version: ["+TaskSpec.getVersion()+"]"
-		print "ProblemType: ["+TaskSpec.getProblemType()+"]"
-		print "DiscountFactor: ["+str(TaskSpec.getDiscountFactor())+"]"
-		print "======================================================================================================="
-		print "\t \t \t \t Observations"
-		print "======================================================================================================="
-		print "Observations: ["+TaskSpec.getObservations()+"]"
-		print "Integers:",TaskSpec.getIntObservations()
-		print "Doubles: ",TaskSpec.getDoubleObservations()
-		print "Chars:   ",TaskSpec.getCharCountObservations()
-		print "======================================================================================================="
-		print "\t \t \t \t Actions"
-		print "======================================================================================================"
-		print "Actions: ["+TaskSpec.getActions()+"]"
-		print "Integers:",TaskSpec.getIntActions()
-		print "Doubles: ",TaskSpec.getDoubleActions()
-		print "Chars:   ",TaskSpec.getCharCountActions()
-		print "======================================================================================================="
-		print "Reward :["+TaskSpec.getReward()+"]"
-		print "Reward Range:",TaskSpec.getRewardRange()
-		print "Extra: ["+TaskSpec.getExtra()+"]"
-		print "remeber that by using len() you get the cardinality of lists!"
-		print "Thus:"
-		print "len(",TaskSpec.getDoubleObservations(),") ==> ",len(TaskSpec.getDoubleObservations())," Double Observations"
-		print TaskSpec.isSpecial("NEGINF");
+		print("=======================================================================================================")
+		print("Version: ["+TaskSpec.getVersion()+"]")
+		print("ProblemType: ["+TaskSpec.getProblemType()+"]")
+		print("DiscountFactor: ["+str(TaskSpec.getDiscountFactor())+"]")
+		print("=======================================================================================================")
+		print("\t \t \t \t Observations")
+		print("=======================================================================================================")
+		print("Observations: ["+TaskSpec.getObservations()+"]")
+		print("Integers:",TaskSpec.getIntObservations())
+		print("Doubles: ",TaskSpec.getDoubleObservations())
+		print("Chars:   ",TaskSpec.getCharCountObservations())
+		print("=======================================================================================================")
+		print("\t \t \t \t Actions")
+		print("======================================================================================================")
+		print("Actions: ["+TaskSpec.getActions()+"]")
+		print("Integers:",TaskSpec.getIntActions())
+		print("Doubles: ",TaskSpec.getDoubleActions())
+		print("Chars:   ",TaskSpec.getCharCountActions())
+		print("=======================================================================================================")
+		print("Reward :["+TaskSpec.getReward()+"]")
+		print("Reward Range:",TaskSpec.getRewardRange())
+		print("Extra: ["+TaskSpec.getExtra()+"]")
+		print("remeber that by using len() you get the cardinality of lists!")
+		print("Thus:")
+		print("len(",TaskSpec.getDoubleObservations(),") ==> ",len(TaskSpec.getDoubleObservations())," Double Observations")
+		print(TaskSpec.isSpecial("NEGINF"));
 
 
 

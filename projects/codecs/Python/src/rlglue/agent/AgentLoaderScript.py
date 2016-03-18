@@ -35,8 +35,8 @@ def main():
 	"RLGLUE_PORT  : If set the agent will use this port to connect on rather than " + str(Network.kDefaultPort) + "\n"
 
 	if (len(sys.argv) < 2):
-		print usage
-		print envVars
+		print(usage)
+		print(envVars)
 		sys.exit(1)
 		
 	AgentLoader.loadAgentLikeScript()

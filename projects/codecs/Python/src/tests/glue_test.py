@@ -34,7 +34,7 @@ class glue_test:
 		self.testCount=self.testCount+1
 		if didFail:
 			self.failCount=self.failCount+1
-			print "Failed test "+str(self.testCount)
+			print("Failed test "+str(self.testCount))
 			
 	def getFailCount(self):
 		return self.failCount

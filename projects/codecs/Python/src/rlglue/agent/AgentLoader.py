@@ -49,12 +49,12 @@ def loadAgent(theAgent):
 		port = Network.kDefaultPort
 		
 
-	print "RL-Glue Python Agent Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")"
-	print "\tConnecting to " + host + " on port " + str(port) + "..."
+	print("RL-Glue Python Agent Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")")
+	print("\tConnecting to " + host + " on port " + str(port) + "...")
 	sys.stdout.flush()
 
 	client.connect(host, port, Network.kRetryTimeout)
-	print "\t Agent Codec Connected"
+	print("\t Agent Codec Connected")
 	client.runAgentEventLoop()
 	client.close()
 

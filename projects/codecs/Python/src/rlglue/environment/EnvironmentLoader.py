@@ -49,12 +49,12 @@ def loadEnvironment(theEnvironment):
 	except TypeError:
 		port = Network.kDefaultPort
 
-	print "RL-Glue Python Environment Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")"
-	print "\tConnecting to " + host + " on port " + str(port) + "..."
+	print("RL-Glue Python Environment Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")")
+	print("\tConnecting to " + host + " on port " + str(port) + "...")
 	sys.stdout.flush()
 
 	client.connect(host, port, Network.kRetryTimeout)
-	print "\t Environment Codec Connected"
+	print("\t Environment Codec Connected")
 
 	client.runEnvironmentEventLoop()
 	client.close()

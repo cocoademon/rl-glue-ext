@@ -99,6 +99,6 @@ tester.check_fail(roat.o.charArray[2]!='?');
 tester.check_fail(roat.o.charArray[3]!=' ');
 tester.check_fail(roat.o.charArray[4]!='&');
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 

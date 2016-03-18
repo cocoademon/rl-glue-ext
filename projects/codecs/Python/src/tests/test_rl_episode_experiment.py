@@ -58,6 +58,6 @@ tester.check_fail(isTerminal!=1);
 tester.check_fail(RLGlue.RL_num_steps()!=5);
 
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 

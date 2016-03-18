@@ -74,6 +74,6 @@ for whichEpisode in range(1, 5):
 			tester.check_fail(len(stepTuple.o.charArray)!=5)
 		
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 

@@ -29,6 +29,6 @@ tester =glue_test("test_sanity")
 taskSpec=RLGlue.RL_init()
 tester.check_fail(taskSpec!="sample task spec")
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 	

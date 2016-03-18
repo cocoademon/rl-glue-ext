@@ -121,14 +121,14 @@ ts['EXTRA'] = 'three little monkeys jumping on the bed'
 a = dict2ts(ts)
 
 
-print
-print
-print "Generated via Code"
-print a
-print
-print
+print()
+print()
+print("Generated via Code")
+print(a)
+print()
+print()
 
-print "Manually"
-print 'VERSION RL-Glue-3.0 PROBLEMTYPE episodic DISCOUNTFACTOR 1.0 OBSERVATIONS DOUBLES (-1.6 1.5) (-0.07 0.07) ACTIONS INTS (0 2)  REWARDS (-1 0)'
+print("Manually")
+print('VERSION RL-Glue-3.0 PROBLEMTYPE episodic DISCOUNTFACTOR 1.0 OBSERVATIONS DOUBLES (-1.6 1.5) (-0.07 0.07) ACTIONS INTS (0 2)  REWARDS (-1 0)')
 
 

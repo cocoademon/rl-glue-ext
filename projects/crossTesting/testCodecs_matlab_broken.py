@@ -29,9 +29,9 @@ def run_test(agent, env, experiment):
 		if cmd.find("matlab") != -1:
 			oneIsMatlab=True;
 		if debug:
-			print "\t\trunning: "+cmd
+			print("\t\trunning: "+cmd)
 			thisProc=subprocess.Popen([cmd],shell=True)
-			print "\t\t\tIt has PID="+str(thisProc.pid)
+			print("\t\t\tIt has PID="+str(thisProc.pid))
 			allSubProcesses.append(thisProc)
 		else:
 			thisProc=subprocess.Popen([cmd],shell=True,stdout=logFile, stderr=subprocess.STDOUT)
@@ -39,7 +39,7 @@ def run_test(agent, env, experiment):
 
 	time.sleep(.65)
 	if debug:
-		print "\t\texperiment: "+experiment
+		print("\t\texperiment: "+experiment)
 		retcode = subprocess.call([experiment],shell=True)
 	else:
 		retcode = subprocess.call([experiment],shell=True,stdout=open(os.devnull,"w"), stderr=open(os.devnull,"w"))
@@ -50,13 +50,13 @@ def run_test(agent, env, experiment):
 		time.sleep(1.0)
 	for someSubProcess in allSubProcesses:
 		if debug:
-			print "Calling Kill on PID: "+str(someSubProcess.pid)
+			print("Calling Kill on PID: "+str(someSubProcess.pid))
 		os.kill(someSubProcess.pid, signal.SIGKILL)
 		
 	time.sleep(.2)
 
 	if retcode!= 0:
-		print "\t\tNonzero return code: "+str(retcode)
+		print("\t\tNonzero return code: "+str(retcode))
 		exit(1)
 	return retcode
 	
@@ -66,7 +66,7 @@ def run_combinations_of_test(agentList, envList, experimentList):
 	for agentLang in agentList:
 		for envLang in envList:
 			for experimentLang in experimentList:
-				print "\tCombination: "+agentLang+"/"+envLang+"/"+experimentLang
+				print("\tCombination: "+agentLang+"/"+envLang+"/"+experimentLang)
 			
 				totalErrors+=run_test(agentList[agentLang],envList[envLang],experimentList[experimentLang])
 	return totalErrors;
@@ -74,7 +74,7 @@ def run_combinations_of_test(agentList, envList, experimentList):
 def run_all_tests(testsList):
 	totalErrors=0
 	for test in testsList:
-		print "Running Suite: "+test
+		print("Running Suite: "+test)
 		[agentList, envList, experimentList] = testsList[test]
 		totalErrors+=run_combinations_of_test(agentList,envList,experimentList)
 
@@ -184,10 +184,10 @@ else:
 	tests["test_rl_episode"]=test_rl_episode;
 			
 
-print "Running Codec Test Suites: "
+print("Running Codec Test Suites: ")
 for testNames in tests:
-	print"\t"+testNames
+	print("\t"+testNames)
 	
 totalErrors=run_all_tests(tests)
-print "Total Errors = "+str(totalErrors)+" on a total of: "+str(totalTests)+" tests"
+print("Total Errors = "+str(totalErrors)+" on a total of: "+str(totalTests)+" tests")
 

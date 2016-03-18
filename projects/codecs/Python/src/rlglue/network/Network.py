@@ -30,7 +30,7 @@ import struct
 import array
 import time
 import sys
-import StringIO
+import io
 try:
     import numpy
     numpy_int_type = numpy.dtype('int32').newbyteorder('>')
@@ -90,8 +90,8 @@ class Network:
 	
 	def __init__(self):
 		self.sock = None
-		self.recvBuffer = StringIO.StringIO('')
-		self.sendBuffer = StringIO.StringIO('')
+		self.recvBuffer = io.StringIO('')
+		self.sendBuffer = io.StringIO('')
 
                 if 'numpy' in globals():
                     self.getAbstractType = self.getAbstractType_numpy
@@ -104,7 +104,7 @@ class Network:
 				self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 				self.sock.connect((host, port))
-			except socket.error, msg:
+			except socket.error as msg:
 				self.sock = None
 				time.sleep(retryTimeout)
 			else:
@@ -126,11 +126,11 @@ class Network:
 	
 	def clearSendBuffer(self):
 		self.sendBuffer.close()
-		self.sendBuffer = StringIO.StringIO()
+		self.sendBuffer = io.StringIO()
 	
 	def clearRecvBuffer(self):
 		self.recvBuffer.close()
-		self.recvBuffer = StringIO.StringIO()
+		self.recvBuffer = io.StringIO()
 	
 	def flipSendBuffer(self):
 		self.clearSendBuffer()

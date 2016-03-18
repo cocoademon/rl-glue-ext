@@ -27,7 +27,7 @@ subs['PYTHON-DEV-FILE-BASE']=uploadedDevFileBase
 f = file(fileName)
 newlines = []
 for line in f:
-	for key,value in subs.iteritems():
+	for key,value in subs.items():
 		if key in line:
 			line=line.replace(key,value)
 	newlines.append(line)

@@ -13,7 +13,7 @@ def make_basic_subs(version, downloadName,wikiInfileName, wikiOutfileName):
 	f = file(wikiInfileName)
 	newlines = []
 	for line in f:
-		for key,value in subs.iteritems():
+		for key,value in subs.items():
 			if key in line:
 				line=line.replace(key,value)
 		newlines.append(line)

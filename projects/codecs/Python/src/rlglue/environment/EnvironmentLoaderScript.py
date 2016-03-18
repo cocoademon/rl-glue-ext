@@ -24,8 +24,8 @@
 import sys
 import os
 import rlglue.network.Network as Network
-from ClientEnvironment import ClientEnvironment
-import EnvironmentLoader as EnvironmentLoader
+from .ClientEnvironment import ClientEnvironment
+from . import EnvironmentLoader as EnvironmentLoader
 def main():
 	usage = "PYTHONPATH=<Path to RLGlue> python -c 'import rlglue.environment.EnvironmentLoaderScript' <Environment>";
 

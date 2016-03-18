@@ -24,7 +24,7 @@
 import sys
 import os
 import rlglue.network.Network as Network
-from ClientAgent import ClientAgent
+from .ClientAgent import ClientAgent
 
 from rlglue.versions import get_svn_codec_version
 from rlglue.versions import get_codec_version

@@ -24,8 +24,8 @@
 import sys
 import os
 import rlglue.network.Network as Network
-from ClientAgent import ClientAgent
-import AgentLoader as AgentLoader
+from .ClientAgent import ClientAgent
+from . import AgentLoader as AgentLoader
 
 def main():
 	usage = "PYTHONPATH=<Path to RLGlue> python AgentLoaderScript <Agent>";

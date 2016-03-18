@@ -46,9 +46,9 @@ class test_speed_environment(Environment):
 		self.stepCount=self.stepCount+1
 		
 		if self.whichEpisode % 2 == 0:
-			self.o.intArray=range(0,50000)
+			self.o.intArray=list(range(0,50000))
 			#cheating, might break something
-			self.o.doubleArray=range(0,50000)
+			self.o.doubleArray=list(range(0,50000))
 			terminal=0
 			if self.stepCount==200:
 				terminal=1
@@ -58,9 +58,9 @@ class test_speed_environment(Environment):
 			ro.terminal=terminal
 			return ro
 
-		self.o.intArray=range(0,5)
+		self.o.intArray=list(range(0,5))
 		#cheating, might break something
-		self.o.doubleArray=range(0,5)
+		self.o.doubleArray=list(range(0,5))
 		terminal=0
 		if self.stepCount==5000:
 			terminal=1

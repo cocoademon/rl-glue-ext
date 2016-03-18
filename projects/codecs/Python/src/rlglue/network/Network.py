@@ -93,10 +93,10 @@ class Network:
 		self.recvBuffer = io.StringIO('')
 		self.sendBuffer = io.StringIO('')
 
-                if 'numpy' in globals():
-                    self.getAbstractType = self.getAbstractType_numpy
-                else:
-                    self.getAbstractType = self.getAbstractType_list
+		if 'numpy' in globals():
+		    self.getAbstractType = self.getAbstractType_numpy
+		else:
+		    self.getAbstractType = self.getAbstractType_list
 	
 	def connect(self, host=kLocalHost, port=kDefaultPort, retryTimeout=kRetryTimeout):
 		while self.sock == None:
@@ -177,18 +177,18 @@ class Network:
 		
 		if numInts > 0:
 			s = self.recvBuffer.read(numInts*kIntSize)
-                        assert kIntSize == 4
-                        returnStruct.intArray = numpy.frombuffer(s,
-                                dtype=numpy_int_type,
-                                count=numInts)
+			assert kIntSize == 4
+			returnStruct.intArray = numpy.frombuffer(s,
+				dtype=numpy_int_type,
+				count=numInts)
 		if numDoubles > 0:
 			s = self.recvBuffer.read(numDoubles*kDoubleSize)
-                        returnStruct.doubleArray = numpy.frombuffer(s, count=numDoubles,
-                                dtype=numpy_float_type)
+			returnStruct.doubleArray = numpy.frombuffer(s, count=numDoubles,
+				dtype=numpy_float_type)
 		if numChars > 0:
 			s = self.recvBuffer.read(numChars*kCharSize)
 			returnStruct.charArray = numpy.frombuffer(s, count=numChars,
-                                dtype=numpy_char_type)
+				dtype=numpy_char_type)
 		return returnStruct
 		
 	def getObservation(self):

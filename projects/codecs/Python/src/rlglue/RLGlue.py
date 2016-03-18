@@ -23,10 +23,10 @@
 
 import sys
 import os
-from . import rlglue.network.Network as Network
+
+from .rlglue.network import Network
 from .rlglue.types import Observation_action
 from .rlglue.types import Reward_observation_action_terminal
-
 
 from .rlglue.versions import get_svn_codec_version
 from .rlglue.versions import get_codec_version

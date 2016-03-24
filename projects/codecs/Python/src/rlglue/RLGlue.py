@@ -24,12 +24,12 @@
 import sys
 import os
 
-from .rlglue.network import Network
-from .rlglue.types import Observation_action
-from .rlglue.types import Reward_observation_action_terminal
+from .network import Network
+from .types import Observation_action
+from .types import Reward_observation_action_terminal
 
-from .rlglue.versions import get_svn_codec_version
-from .rlglue.versions import get_codec_version
+from .versions import get_svn_codec_version
+from .versions import get_codec_version
 
 network = None
 

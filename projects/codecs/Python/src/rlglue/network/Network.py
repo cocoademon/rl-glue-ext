@@ -39,6 +39,9 @@ try:
 except:
     pass
 
+buffer_type = io.BytesIO
+string_encoding = 'UTF-8'
+
 from rlglue.types import Action
 from rlglue.types import Observation
 from rlglue.types import Reward_observation_terminal
@@ -90,8 +93,8 @@ class Network:
 	
 	def __init__(self):
 		self.sock = None
-		self.recvBuffer = io.StringIO('')
-		self.sendBuffer = io.StringIO('')
+		self.recvBuffer = buffer_type()
+		self.sendBuffer = buffer_type()
 
 		if 'numpy' in globals():
 		    self.getAbstractType = self.getAbstractType_numpy
@@ -117,20 +120,20 @@ class Network:
 		self.sock.sendall(self.sendBuffer.getvalue())
 	
 	def recv(self,size):
-		s = ''
+		s = bytearray()
 		while len(s) < size:
-			s += self.sock.recv(size - len(s))
+			s.extend(self.sock.recv(size - len(s)))
 		self.recvBuffer.write(s)
 		self.recvBuffer.seek(0)
 		return len(s)
 	
 	def clearSendBuffer(self):
 		self.sendBuffer.close()
-		self.sendBuffer = io.StringIO()
+		self.sendBuffer = buffer_type()
 	
 	def clearRecvBuffer(self):
 		self.recvBuffer.close()
-		self.recvBuffer = io.StringIO()
+		self.recvBuffer = buffer_type()
 	
 	def flipSendBuffer(self):
 		self.clearSendBuffer()
@@ -149,7 +152,8 @@ class Network:
 	def getString(self):
 		#If you read 0 you get "" not None so that's fine
 		length = self.getInt()
-		return self.recvBuffer.read(length)
+		recv_bytes = self.recvBuffer.read(length)
+		return recv_bytes.decode(encoding=string_encoding)
 	
 	
 	def getAbstractType_list(self):
@@ -206,8 +210,10 @@ class Network:
 	def putString(self,value):
 		if value == None:
 			value = ''
-		self.putInt(len(value))
-		self.sendBuffer.write(value)
+
+		b = value.encode(encoding=string_encoding)
+		self.putInt(len(b))
+		self.sendBuffer.write(b)
 	
 	def putObservation(self,obs):
 		self.putAbstractType(obs)
@@ -218,13 +224,16 @@ class Network:
 	def putAbstractType(self, theItem):
 		self.putInt(len(theItem.intArray))
 		self.putInt(len(theItem.doubleArray))
-		self.putInt(len(theItem.charArray))
+
+		charBytes = theItem.charArray.encode(encoding=string_encoding)
+
+		self.putInt(len(charBytes))
 		if len(theItem.intArray) > 0:
 			self.sendBuffer.write(struct.pack("!%di" % (len(theItem.intArray)),*(theItem.intArray)))
 		if len(theItem.doubleArray) > 0:
 			self.sendBuffer.write(struct.pack("!%dd" % (len(theItem.doubleArray)),*(theItem.doubleArray)))
-		if len(theItem.charArray) > 0:
-			self.sendBuffer.write(struct.pack("!%dc" % (len(theItem.charArray)),*(theItem.charArray)))
+		if len(charBytes) > 0:
+			self.sendBuffer.write(struct.pack("!%dc" % (len(charBytes)),*(charBytes)))
 		
 	def putRewardObservation(self,rewardObservation):
 		self.putInt(rewardObservation.terminal);
